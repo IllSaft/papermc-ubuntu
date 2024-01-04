@@ -2,9 +2,9 @@
 # This script contains helper functions that provide various utilities to the application.
 
 # Sets the terminal title to the provided argument.
-# Inputs:
+# Inputs: 
 #   $1 - The title string to be set for the terminal.
-# Usage:
+# Usage: 
 #   set_terminal_title "My Application"
 #!/bin/bash
 # This script contains helper functions that provide various utilities to the application.
@@ -151,16 +151,16 @@ start_server_for_systemd() {
 parse_arguments() {
     while [[ "$1" != "" ]]; do
         case $1 in
-        help)
-            usage
-            exit 0
-            ;;
-        auto)
-            SYSTEMCTL_AUTO_START=true
-            ;;
-        *)
-            main
-            ;;
+            help )
+                usage
+                exit 0
+                ;;
+            auto )
+                SYSTEMCTL_AUTO_START=true
+                ;;
+            * )
+                main
+                ;;
         esac
         shift
     done
@@ -168,14 +168,6 @@ parse_arguments() {
 
 # Function to stop, disable, and remove the systemd service
 stop_disable_and_remove_systemctl() {
-    local service_file="/etc/systemd/system/$SERVICE_NAME.service"
-
-    # Exit if the service file does not exist
-    if [ ! -f "$service_file" ]; then
-        log_bold_nodate_warning "$SERVICE_NAME.service file does not exist. Skipping."
-        return 0
-    fi
-
     # Check if the service is active and stop it
     if systemctl --quiet is-active $SERVICE_NAME; then
         log_bold_nodate_info "Stopping $SERVICE_NAME service..."
@@ -188,7 +180,7 @@ stop_disable_and_remove_systemctl() {
             # Wait for the server to shut down gracefully
             log_bold_nodate_info "Waiting for the server to shut down gracefully..."
             while screen -list | grep -q "$SESSION"; do
-                sleep 5 # Adjust this sleep duration as needed
+                sleep 5  # Adjust this sleep duration as needed
             done
 
             log_bold_nodate_success "Minecraft server stopped gracefully."
@@ -206,10 +198,12 @@ stop_disable_and_remove_systemctl() {
     fi
 
     # Remove the service file
-    log_bold_nodate_info "Removing $SERVICE_NAME service file..."
-    sudo rm "$service_file"
-    sudo systemctl daemon-reload
-    sudo systemctl reset-failed
+    if [ -f "/etc/systemd/system/$SERVICE_NAME.service" ]; then
+        log_bold_nodate_info "Removing $SERVICE_NAME service file..."
+        sudo rm "/etc/systemd/system/$SERVICE_NAME.service"
+        sudo systemctl daemon-reload
+        sudo systemctl reset-failed
+    fi
 
     log_bold_nodate_success "$SERVICE_NAME.service stopped, disabled, and removed successfully."
 }
@@ -222,7 +216,7 @@ create_systemctl() {
     # Check if service already exists
     if systemctl --quiet is-active $SERVICE_NAME || systemctl --quiet is-enabled $SERVICE_NAME; then
         log_bold_nodate_note "Service $SERVICE_NAME already exists and is active or enabled."
-        return 0 # Skip systemctl start process
+        return 0  # Skip systemctl start process
     fi
 
     # EULA acceptance check
@@ -230,7 +224,7 @@ create_systemctl() {
         log_bold_nodate_tip "You must accept the Minecraft EULA to start the server."
         log_bold_nodate_tip "Read it here: https://aka.ms/MinecraftEULA"
         if confirm_action "Do you accept the Minecraft EULA?"; then
-            echo "eula=true" >"$eula_file"
+            echo "eula=true" > "$eula_file"
             log_bold_nodate_confirmation "EULA accepted."
         else
             log_bold_nodate_error "Minecraft EULA was declined. Cannot start the server."
@@ -360,10 +354,11 @@ configure_minecraft_server() {
         echo "pvp=$PVP"
         echo "server-ip=$SERVER_IP"
         echo "server-port=$SERVER_PORT"
-    } >"$server_properties"
+    } > "$server_properties"
 
     log_nodate_success "Minecraft server properties configured."
 }
+
 
 # Function to start the Minecraft server inside a screen session
 start_minecraft_server() {
@@ -401,7 +396,7 @@ start_minecraft_server() {
         echo "You must accept the Minecraft EULA to start the server."
         echo "Read it here: https://aka.ms/MinecraftEULA"
         if confirm_action "Do you accept the Minecraft EULA?"; then
-            echo "eula=true" >"$eula_file"
+            echo "eula=true" > "$eula_file"
             log_nodate_success "EULA accepted. Starting the server..."
         else
             log_bold_nodate_error "Minecraft EULA was declined. Exiting script."
@@ -420,7 +415,7 @@ start_minecraft_server() {
     # Prompt to screen in
     log_bold_nodate_prompt "Do you want to attach to the '$session_name' server screen session? [Y/n] (Default: No in 10 seconds)"
     read -t 10 -r -p "" screen_in
-    screen_in=${screen_in:-N} # Default to 'N' if no input is provided
+    screen_in=${screen_in:-N}  # Default to 'N' if no input is provided
 
     if [[ $screen_in =~ ^[Yy]$ ]]; then
         screen -r "$session_name"
@@ -438,7 +433,7 @@ start_minecraft_server() {
         # Launch a background process to monitor the screen session
         (
             while screen -list | grep -q "$session_name"; do
-                sleep 10 # Check every 10 seconds
+                sleep 10  # Check every 10 seconds
             done
         ) &
         # Immediate return to the command prompt
