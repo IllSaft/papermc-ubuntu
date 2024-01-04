@@ -1,0 +1,11 @@
+[SUCCESS] - Logger Initialized and new log file created.
+[TIP] - Previous log file archived as /home/howson/Documents/GitHub/papermc-ubuntu/logs/logfile.log-20240104-045910.gz
+[IMPORTANT] - Environment Verification: Ensuring Compatibility
+[NOTE] - 'java-21-amazon-corretto-jdk jq screen curl' are already installed.
+[SUCCESS] - Environment Setup.
+[WARNING] - papermc-server service file does not exist. Skipping stop, disable, and remove process.
+[INFO] - Fetching build: 371 (Current build: 365)...
+[NOTE] - paper-1.20.4-371.jar already exists. Skipping download.
+[NOTE] - Linked paper-1.20.4-371.jar to papermc_server_files/paper.jar.
+[PROMPT] - Do you accept the Minecraft EULA? (https://aka.ms/MinecraftEULA) [y/N]
+[ERROR] - Minecraft EULA was declined. Exiting.
