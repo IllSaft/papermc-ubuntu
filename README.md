@@ -19,32 +19,33 @@ The MC4ALL PaperMC Server Management Script is a versatile Bash script designed 
 ## Installation
 1. **Clone the repository**:
 
+```bash
 git clone https://github.com/yourusername/mc4all-papermc-server.git
 cd mc4all-papermc-server
-
-markdown
+```
 
 2. **Set execute permissions for the main script**:
 
+```bash
 chmod +x main.sh
 
-python
-
+```
 
 ## Usage
 
 ### Starting the Server Manually
 - Run the script without any arguments to start the server manually with the latest PaperMC build:
 
+```bash
 ./main.sh
-
-sql
+```
 
 - To start the server with a specific build:
 
+```bash
 ./main.sh 365 # Replace '365' with the desired build number
+```
 
-markdown
 
 
 ### Using Systemd for Automatic Startup
@@ -53,19 +54,18 @@ markdown
 ### Attaching to the Server Console
 - If the server is running in a `screen` session, you can attach to the session using:
 
+```bash
 screen -r MC4ALL
-
-arduino
+```
 
 - To detach from the screen session and leave the server running in the background, press `Ctrl+A` followed by `D`.
 
 ### Stopping the Server
 - To stop the server when running under `systemd`, use:
 
+```bash
 sudo systemctl stop mc4all-server
-
-markdown
-
+```
 
 ### Updating the Server
 - To update to the latest build, simply restart the server script. It checks for the latest build and updates if necessary.
