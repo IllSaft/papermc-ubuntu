@@ -221,8 +221,8 @@ create_systemctl() {
 
     # EULA acceptance check
     if [[ ! -f "$eula_file" || $(grep -c 'eula=false' "$eula_file") -gt 0 ]]; then
-        log_bold_nodate_tip "You must accept the Minecraft EULA to start the server."
-        log_bold_nodate_tip "Read it here: https://aka.ms/MinecraftEULA"
+        echo "You must accept the Minecraft EULA to start the server."
+        echo "Read it here: https://aka.ms/MinecraftEULA"
         if confirm_action "Do you accept the Minecraft EULA?"; then
             echo "eula=true" > "$eula_file"
             log_bold_nodate_confirmation "EULA accepted."
