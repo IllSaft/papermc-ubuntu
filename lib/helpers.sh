@@ -393,17 +393,22 @@ start_minecraft_server() {
     if [[ -f "$eula_file" && $(grep -c 'eula=true' "$eula_file") -gt 0 ]]; then
         log_nodate_success "EULA already accepted. Starting the server..."
     else
-        echo "You must accept the Minecraft EULA to start the server."
-        echo "Read it here: https://aka.ms/MinecraftEULA"
-        if confirm_action "Do you accept the Minecraft EULA?"; then
-            echo "eula=true" > "$eula_file"
+        # Prompt for EULA acceptance
+        log_bold_nodate_prompt "Do you accept the Minecraft EULA? (https://aka.ms/MinecraftEULA) [y/N]"
+        read -r eula_acceptance
+        if [[ $eula_acceptance =~ ^[Yy]$ ]]; then
+            # User accepted the EULA, generate eula.txt
+            echo "#By changing the setting below to TRUE you are indicating your agreement to our EULA (https://aka.ms/MinecraftEULA)." > "$eula_file"
+            echo "#$(date) - grab current timestamp" >> "$eula_file"
+            echo "eula=true" >> "$eula_file"
             log_nodate_success "EULA accepted. Starting the server..."
         else
+            # User declined the EULA, exit the script
             log_bold_nodate_error "Minecraft EULA was declined. Exiting script."
             exit 1
         fi
     fi
-
+    
     # Start the server in a detached screen session and redirect output to logfile
     (
         configure_minecraft_server
