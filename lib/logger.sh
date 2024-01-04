@@ -10,11 +10,11 @@ initiate_logger() {
             # No active screen session, check if log file exists and gzip it
             if [ -f "$LOG_FILE" ]; then
                 local timestamp=$(date +"%Y%m%d-%H%M%S")
-                gzip -c "$LOG_FILE" > "${LOG_FILE}-${timestamp}.gz"
+                gzip -c "$LOG_FILE" >"${LOG_FILE}-${timestamp}.gz"
             fi
 
             # Create/clear the new log file
-            > "$LOG_FILE"
+            >"$LOG_FILE"
             log_bold_nodate_success "Logger Initialized and new log file created."
             log_bold_nodate_tip "Previous log file archived as ${LOG_FILE}-${timestamp}.gz"
         else
@@ -24,7 +24,6 @@ initiate_logger() {
         export LOGGER_INITIALIZED=true
     fi
 }
-
 
 # Core Logging Function
 log_event() {
@@ -87,32 +86,32 @@ log_event() {
     # Handling custom, mood, and INFO_HEADER prefixes for console
     if [[ "$ENABLE_CUSTOM_LOG_PREFIX" == true && "$is_custom" == true ]]; then
         case $mood in
-            "CUSTOM_PREFIX_1") 
-                console_prefix="[$LOG_PREFIX_1]${console_prefix}${mood_style_console}"
-                logfile_prefix="${logfile_prefix}[$LOG_PREFIX_1]"  # Apply custom log prefix for logfile
-                ;;
-            "CUSTOM_PREFIX_2") 
-                console_prefix="[$LOG_PREFIX_2]${console_prefix}${mood_style_console}"
-                logfile_prefix="${logfile_prefix}[$LOG_PREFIX_2]"  # Apply custom log prefix for logfile
-                ;;
-            "CUSTOM_PREFIX_3") 
-                console_prefix="[$LOG_PREFIX_3]${console_prefix}${mood_style_console}"
-                logfile_prefix="${logfile_prefix}[$LOG_PREFIX_3]"  # Apply custom log prefix for logfile
-                ;;
-            *) 
-                console_prefix="[$CUSTOM_LOG_PREFIX]${console_prefix}${mood_style_console}"
-                logfile_prefix="${logfile_prefix}[$CUSTOM_LOG_PREFIX]"  # Apply custom log prefix for logfile
-                ;;
+        "CUSTOM_PREFIX_1")
+            console_prefix="[$LOG_PREFIX_1]${console_prefix}${mood_style_console}"
+            logfile_prefix="${logfile_prefix}[$LOG_PREFIX_1]" # Apply custom log prefix for logfile
+            ;;
+        "CUSTOM_PREFIX_2")
+            console_prefix="[$LOG_PREFIX_2]${console_prefix}${mood_style_console}"
+            logfile_prefix="${logfile_prefix}[$LOG_PREFIX_2]" # Apply custom log prefix for logfile
+            ;;
+        "CUSTOM_PREFIX_3")
+            console_prefix="[$LOG_PREFIX_3]${console_prefix}${mood_style_console}"
+            logfile_prefix="${logfile_prefix}[$LOG_PREFIX_3]" # Apply custom log prefix for logfile
+            ;;
+        *)
+            console_prefix="[$CUSTOM_LOG_PREFIX]${console_prefix}${mood_style_console}"
+            logfile_prefix="${logfile_prefix}[$CUSTOM_LOG_PREFIX]" # Apply custom log prefix for logfile
+            ;;
         esac
     elif [[ "$mood" == "INFO_HEADER" ]]; then
         if [[ "$ENABLE_INFO_HEADER" == true ]]; then
             local info_header_color="${COLOR_INFO_HEADER}"
             if [[ "$USE_CUSTOM_INFO_HEADER" == true ]]; then
                 console_prefix="${info_header_color}${CUSTOM_INFO_HEADER_TEXT}\033[0m"
-                logfile_prefix="${logfile_prefix}${CUSTOM_INFO_HEADER_TEXT}"  # No separator for logfile
+                logfile_prefix="${logfile_prefix}${CUSTOM_INFO_HEADER_TEXT}" # No separator for logfile
             else
                 console_prefix="${info_header_color}[INFO_HEADER]\033[0m"
-                logfile_prefix="${logfile_prefix}[INFO_HEADER]"  # No separator for logfile
+                logfile_prefix="${logfile_prefix}[INFO_HEADER]" # No separator for logfile
             fi
         fi
     else
@@ -141,7 +140,7 @@ log_event() {
 
     # Constructing and displaying the log message without color
     local logfile_message="${verbose_prefix_logfile}${debug_prefix_logfile}${logfile_prefix}${separator}${narrative}"
-    echo "$logfile_message" >> "$LOG_FILE"
+    echo "$logfile_message" >>"$LOG_FILE"
 }
 
 # Standard Log Level Functions

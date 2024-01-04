@@ -20,18 +20,17 @@ install_corretto_21() {
 check_corretto_21_installation() {
     local java_version_output=$(java -version 2>&1)
     if [[ $java_version_output != *"Corretto-21"* ]]; then
-        return 1  # Corretto 21 not found
+        return 1 # Corretto 21 not found
     else
-        return 0  # Corretto 21 is installed
+        return 0 # Corretto 21 is installed
     fi
 }
 
-
 check_installation() {
     local tool_name=$1
-    local check_command=$2  # Command or function to verify installation
+    local check_command=$2 # Command or function to verify installation
 
-    if ! $check_command &> /dev/null; then
+    if ! $check_command &>/dev/null; then
         log_bold_nodate_error "Required tool '$tool_name' is not installed."
         read -p "Do you want to install '$tool_name' now? [y/N] " answer
         if [[ $answer =~ ^[Yy]$ ]]; then
@@ -61,7 +60,7 @@ check_installation() {
 verify_environment() {
     log_bold_nodate_important "Environment Verification: Ensuring Compatibility"
 
-    local required_tools=("java-21-amazon-corretto-jdk" "jq" "screen" )
+    local required_tools=("java-21-amazon-corretto-jdk" "jq" "screen")
     local all_tools_installed=true
 
     for tool in "${required_tools[@]}"; do
