@@ -11,4 +11,4 @@ chmod +x "$BASE_DIR/main.sh"
 chmod +x "$BASE_DIR/lib/"*
 chmod +x "$BASE_DIR/config/palette.sh"
 
-echo "Setup completed successfully."
+echo "Setup completed successfully. Run ./main.sh to get started."

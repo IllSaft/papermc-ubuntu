@@ -21,29 +21,32 @@
 1. **🌐 Clone the repository**:
 
 ```bash
-git clone https://github.com/yourusername/mc4all-papermc-server.git
+git clone https://github.com/IllSaft/papermc-ubuntu.git
 cd mc4all-papermc-server
 ```
 
 2. **🔑 Set execute permissions for the main script**:
 
 ```bash
-chmod +x main.sh
+sudo chmod +x setup.sh
+./setup.sh
 ```
 
 ## 🚀 Usage
 
 ### ✨ Starting the Server Manually
 - Run the script without any arguments to start the server manually with the latest PaperMC build:
+- Go to settings.cfg and look for 'PAPER_VERSION="latest" # Use "latest" for the latest build.'
 
 ```bash
 ./main.sh
 ```
 
 - To start the server with a specific build:
+- Go to settings.cfg and look for 'PAPER_VERSION="367" # Use "latest" for the latest build or specify a build number, e.g., "365"'
 
 ```bash
-./main.sh 365 # Replace '365' with the desired build number
+./main.sh
 ```
 
 ### 🔄 Using Systemd for Automatic Startup
@@ -59,14 +62,15 @@ screen -r MC4ALL
 - To detach from the screen session and leave the server running in the background, press `Ctrl+A` followed by `D`.
 
 ### 🛑 Stopping the Server
-- To stop the server when running under `systemd`, use:
-
+- To stop the server when running under `systemd`, edit the `settings.cfg` file and set `SYSTEMCTL_AUTO_START=false`. Then, run the script normally. The script will re-configure the `systemd` service for manual mode on your PaperMC server.
+  
+- Go to settings.cfg and look for `SYSTEMCTL_AUTO_START=true` file and set `true` to `false`. Then, run the script normally.
 ```bash
-sudo systemctl stop mc4all-server
+./main.sh
 ```
 
 ### 🆕 Updating the Server
-- To update to the latest build, simply restart the server script. It checks for the latest build and updates if necessary.
+- To update to the latest build, simply run `./main.sh`. It checks for the latest build and updates if `settings.cfg` file specify `PAPER_VERSION="latest"`.
 
 ## ⚙️ Configuration
 - Configuration parameters like server directory, session name, Java options, and others can be adjusted in the `settings.cfg` file.
