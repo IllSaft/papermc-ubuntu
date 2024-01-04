@@ -1,0 +1,11 @@
+[SUCCESS] - Logger Initialized, continuing with existing log file.
+[IMPORTANT] - Environment Verification: Ensuring Compatibility
+[NOTE] - 'java-21-amazon-corretto-jdk jq screen' are already installed.
+[SUCCESS] - Environment Setup.
+[WARNING] - papermc-server.service file does not exist. Skipping.
+[WARNING] - [WARNING] - Server update available. Current build: #unknown, Latest build: #371.
+[SUCCESS] - Main script execution completed
+[SUCCESS] - Logger Initialized, continuing with existing log file.
+[IMPORTANT] - Environment Verification: Ensuring Compatibility
+[ERROR] - Required tool 'fake_tool' is not installed.
+[ERROR] - Installation of 'fake_tool' declined. Exiting script.

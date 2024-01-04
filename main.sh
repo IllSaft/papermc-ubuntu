@@ -30,6 +30,7 @@ set_terminal_title "$APPLICATION_TITLE"
 
 # Modify the main function
 main() {
+    verify_environment
     if [[ $CALLED_BY_SYSTEMD == 1 ]]; then
         start_server_for_systemd
         exit 0

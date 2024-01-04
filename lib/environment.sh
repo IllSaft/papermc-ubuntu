@@ -60,7 +60,7 @@ check_installation() {
 verify_environment() {
     log_bold_nodate_important "Environment Verification: Ensuring Compatibility"
 
-    local required_tools=("java-21-amazon-corretto-jdk" "jq" "screen")
+    local required_tools=("java-21-amazon-corretto-jdk" "jq" "screen" "curl")
     local all_tools_installed=true
 
     for tool in "${required_tools[@]}"; do
