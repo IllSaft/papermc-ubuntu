@@ -58,7 +58,7 @@ check_installation() {
 }
 
 verify_environment() {
-    log_bold_nodate_important "Environment Verification: Ensuring Compatibility"
+    log_bold_nodate_note "Environment Verification: Ensuring Compatibility"
 
     local required_tools=("java-21-amazon-corretto-jdk" "jq" "screen" "curl")
     local all_tools_installed=true
@@ -76,4 +76,5 @@ verify_environment() {
     fi
 
     log_bold_nodate_success "Environment Setup."
+    log_custom_prefix_2 "[ Default PaperMC Server ]"
 }

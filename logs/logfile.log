@@ -1,11 +1,49 @@
-[SUCCESS] - Logger Initialized and new log file created.
-[TIP] - Previous log file archived as /home/howson/Documents/GitHub/papermc-ubuntu/logs/logfile.log-20240104-045910.gz
-[IMPORTANT] - Environment Verification: Ensuring Compatibility
-[NOTE] - 'java-21-amazon-corretto-jdk jq screen curl' are already installed.
-[SUCCESS] - Environment Setup.
-[WARNING] - papermc-server service file does not exist. Skipping stop, disable, and remove process.
-[INFO] - Fetching build: 371 (Current build: 365)...
-[NOTE] - paper-1.20.4-371.jar already exists. Skipping download.
-[NOTE] - Linked paper-1.20.4-371.jar to papermc_server_files/paper.jar.
-[PROMPT] - Do you accept the Minecraft EULA? (https://aka.ms/MinecraftEULA) [y/N]
-[ERROR] - Minecraft EULA was declined. Exiting.
+[VERBOSE] [SUCCESS] — Logger Initialized and new log file created.
+[VERBOSE] [TIP] — Previous log file archived as /home/howson/Documents/GitHub/papermc-ubuntu/logs/logfile.log-20240104-110321.gz
+[VERBOSE] [ Build Version ][Jan/04/2024 — 11:03 AM] — PaperMC Build #373. Matches requested build. No update required.
+[VERBOSE] [WARNING] — ⚠️ Server is currently in Maintenance Mode.
+[VERBOSE] [PROMPT] — 🔵 🛠️ Do you want to continue starting the server in Maintenance Mode? [🟢 y/🔴 N]: 
+[VERBOSE] [HIGHLIGHT] — 🔸 Server start aborted.
+[VERBOSE] [SUCCESS] — Maintenance mode disabled. Server settings restored.
+[VERBOSE] [PROMPT] — 🚀 Do you want to start the Minecraft server? [Y/n] (auto-start in 8 seconds): 
+[VERBOSE] [NOTE] — 🛠️  Minecraft server properties configured.
+[VERBOSE] [SUCCESS] — 🎉 Server is starting in a screen session named 'default-papermc-server'.
+[VERBOSE] [PROMPT] — 🔎 Do you want to attach to the server console? [Y/n] (auto-no in 10 seconds): 
+Starting org.bukkit.craftbukkit.Main
+System Info: Java 21 (OpenJDK 64-Bit Server VM 21.0.1+12-LTS) Host: Linux 6.6.8-testhowson (amd64)
+Loading libraries, please wait...
+2024-01-04 11:03:36,875 ServerMain WARN Advanced terminal features are not available in this environment
+[11:03:38 INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
+[11:03:39 INFO]: Loaded 1174 recipes
+[11:03:39 INFO]: Loaded 1271 advancements
+[11:03:39 INFO]: Starting minecraft server version 1.20.4
+[11:03:39 INFO]: Loading properties
+[11:03:39 INFO]: This server is running Paper version git-Paper-373 (MC: 1.20.4) (Implementing API version 1.20.4-R0.1-SNAPSHOT) (Git: b2a6d57)
+[11:03:39 INFO]: Server Ping Player Sample Count: 12
+[11:03:39 INFO]: Using 4 threads for Netty based IO
+[11:03:39 WARN]: [!] The timings profiler has been enabled but has been scheduled for removal from Paper in the future.
+    We recommend installing the spark profiler as a replacement: https://spark.lucko.me/
+    For more information please visit: https://github.com/PaperMC/Paper/issues/8948
+[11:03:39 INFO]: [ChunkTaskScheduler] Chunk system is using 1 I/O threads, 8 worker threads, and gen parallelism of 8 threads
+[11:03:39 INFO]: Default game type: SURVIVAL
+[11:03:39 INFO]: Generating keypair
+[11:03:39 INFO]: Starting Minecraft server on *:25565
+[11:03:39 INFO]: Using epoll channel type
+[11:03:39 INFO]: Paper: Using libdeflate (Linux x86_64) compression from Velocity.
+[11:03:39 INFO]: Paper: Using OpenSSL 3.0.x (Linux x86_64) cipher from Velocity.
+[11:03:39 INFO]: Server permissions file permissions.yml is empty, ignoring it
+[11:03:39 INFO]: Preparing level "world"
+[11:03:39 INFO]: Preparing start region for dimension minecraft:overworld
+[11:03:40 INFO]: Time elapsed: 412 ms
+[11:03:40 INFO]: Preparing start region for dimension minecraft:the_nether
+[11:03:40 INFO]: Time elapsed: 27 ms
+[11:03:40 INFO]: Preparing start region for dimension minecraft:the_end
+[11:03:40 INFO]: Time elapsed: 16 ms
+[11:03:40 INFO]: Running delayed init tasks
+[11:03:40 INFO]: Done (1.316s)! For help, type "help"
+[11:03:40 INFO]: Timings Reset
+[11:03:49 INFO]: UUID of player Scott_Howson is 5743a29d-3e5d-4e13-ad50-f83a325c54f3
+[11:03:49 INFO]: [38;2;255;255;85mScott_Howson joined the game[0m
+[11:03:49 INFO]: Scott_Howson[/127.0.0.1:47308] logged in with entity id 307 at ([world]-143.63898306868774, 67.0, 153.66325824000066)
+[11:03:51 INFO]: Scott_Howson lost connection: Disconnected
+[11:03:51 INFO]: [38;2;255;255;85mScott_Howson left the game[0m

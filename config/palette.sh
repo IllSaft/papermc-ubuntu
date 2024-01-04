@@ -33,6 +33,11 @@ COLOR_PROMPT=$(tput setaf 51)        # Cyan for PROMPT
 COLOR_STATUS=$(tput setaf 163)       # Light Magenta for STATUS
 COLOR_QUESTION=$(tput setaf 172)     # Bright-ish Orange/Amber for questions
 
+# Custom Colors for Custom Log Prefixes
+COLOR_CUSTOM_PREFIX_1=$(tput setaf 33) # Orange
+COLOR_CUSTOM_PREFIX_2=$(tput setaf 51) # Cyan for PROMPT
+COLOR_CUSTOM_PREFIX_3=$(tput setaf 35) # Purple
+
 # Reset to default color
 COLOR_RESET=$(tput sgr0)
 # Color Palette Definition using `tput`
@@ -64,6 +69,9 @@ declare -A COLOR_PALETTE=(
     [HIGHLIGHT]="$COLOR_HIGHLIGHT"
     [NEUTRAL]="$COLOR_NEUTRAL"
     [ALERT]="$COLOR_ALERT"
+    [CUSTOM_PREFIX_1]="$COLOR_CUSTOM_PREFIX_1"
+    [CUSTOM_PREFIX_2]="$COLOR_CUSTOM_PREFIX_2"
+    [CUSTOM_PREFIX_3]="$COLOR_CUSTOM_PREFIX_3"
 )
 
 # Add Bold Variants to the Palette

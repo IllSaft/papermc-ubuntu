@@ -24,7 +24,7 @@ initiate_logger() {
         export LOGGER_INITIALIZED=true
     fi
 }
-
+source "config/settings.cfg"  # Update this path to the actual location of settings.cfg
 # Core Logging Function
 log_event() {
     local original_mood=$1
@@ -57,6 +57,11 @@ log_event() {
         is_debug=true
     fi
 
+    # Applying custom colors for custom moods
+    if [[ "$is_custom" == true ]]; then
+        mood_style_console="${COLOR_PALETTE[$original_mood]}"
+    fi
+
     # Apply debug and verbose color based on settings.cfg for console output
     local debug_color_console="${COLOR_DEBUG}"
     local verbose_color_console="${COLOR_VERBOSE}"
@@ -64,15 +69,20 @@ log_event() {
     local verbose_prefix_console=""
 
     if [[ "$VERBOSE_MODE" == true ]]; then
-        verbose_prefix_console="${verbose_color_console}[VERBOSE]\033[0m "
+        verbose_prefix_console="${verbose_color_console}[VERBOSE]\033[0m"
+        debug_prefix_console="${debug_color_console}[DEBUG]\033[0m — "
     fi
     if [[ "$is_debug" == true ]]; then
-        debug_prefix_console="${debug_color_console}[DEBUG]\033[0m "
+        debug_prefix_console="${debug_color_console}[DEBUG]\033[0m — "
     fi
 
-    # Apply color and possibly bold style based on mood for console output
-    local style_console="${COLOR_PALETTE[$mood]}"
-    local mood_style_console="${COLOR_PALETTE[$mood]}"
+    # Determine the color and style based on mood
+    local mood_style_console
+    if [[ "$is_custom" == true ]]; then
+        mood_style_console="${COLOR_PALETTE[$original_mood]}"
+    else
+        mood_style_console="${COLOR_PALETTE[$mood]}"
+    fi
     [[ "$is_bold" == true ]] && mood_style_console="\033[1m${mood_style_console}"
 
     # Constructing console prefixes
@@ -83,38 +93,39 @@ log_event() {
     fi
     console_prefix="$logfile_prefix"
 
-    # Handling custom, mood, and INFO_HEADER prefixes for console
-    if [[ "$ENABLE_CUSTOM_LOG_PREFIX" == true && "$is_custom" == true ]]; then
-        case $mood in
+    # Handling custom moods
+    if [[ "$is_custom" == true ]]; then
+        mood_style_console="${COLOR_PALETTE[$original_mood]}"
+        local custom_prefix_text=""
+        case $original_mood in
         "CUSTOM_PREFIX_1")
-            console_prefix="[$LOG_PREFIX_1]${console_prefix}${mood_style_console}"
-            logfile_prefix="${logfile_prefix}[$LOG_PREFIX_1]" # Apply custom log prefix for logfile
+            custom_prefix="${LOG_PREFIX_1}"
             ;;
         "CUSTOM_PREFIX_2")
-            console_prefix="[$LOG_PREFIX_2]${console_prefix}${mood_style_console}"
-            logfile_prefix="${logfile_prefix}[$LOG_PREFIX_2]" # Apply custom log prefix for logfile
+            custom_prefix="${LOG_PREFIX_2}"
             ;;
         "CUSTOM_PREFIX_3")
-            console_prefix="[$LOG_PREFIX_3]${console_prefix}${mood_style_console}"
-            logfile_prefix="${logfile_prefix}[$LOG_PREFIX_3]" # Apply custom log prefix for logfile
+            custom_prefix="${LOG_PREFIX_3}"
             ;;
         *)
-            console_prefix="[$CUSTOM_LOG_PREFIX]${console_prefix}${mood_style_console}"
-            logfile_prefix="${logfile_prefix}[$CUSTOM_LOG_PREFIX]" # Apply custom log prefix for logfile
+            custom_prefix="Custom" # Default text if custom prefix not defined
             ;;
         esac
-    elif [[ "$mood" == "INFO_HEADER" ]]; then
-        if [[ "$ENABLE_INFO_HEADER" == true ]]; then
-            local info_header_color="${COLOR_INFO_HEADER}"
-            if [[ "$USE_CUSTOM_INFO_HEADER" == true ]]; then
-                console_prefix="${info_header_color}${CUSTOM_INFO_HEADER_TEXT}\033[0m"
-                logfile_prefix="${logfile_prefix}${CUSTOM_INFO_HEADER_TEXT}" # No separator for logfile
-            else
-                console_prefix="${info_header_color}[INFO_HEADER]\033[0m"
-                logfile_prefix="${logfile_prefix}[INFO_HEADER]" # No separator for logfile
-            fi
+        console_prefix="${mood_style_console}[${custom_prefix}]"
+        logfile_prefix="[$custom_prefix]${logfile_prefix}"
+    fi
+
+    # Handling custom, mood, and INFO_HEADER prefixes for console
+    if [[ "$ENABLE_INFO_HEADER" == true && "$mood" == "INFO_HEADER" ]]; then
+        local info_header_color="${COLOR_INFO_HEADER}"
+        if [[ "$USE_CUSTOM_INFO_HEADER" == true ]]; then
+            console_prefix="${info_header_color}${CUSTOM_INFO_HEADER_TEXT}\033[0m"
+            logfile_prefix="${logfile_prefix}${CUSTOM_INFO_HEADER_TEXT}" # No separator for logfile
+        else
+            console_prefix="${info_header_color}[INFO_HEADER]\033[0m"
+            logfile_prefix="${logfile_prefix}[INFO_HEADER]" # No separator for logfile
         fi
-    else
+    elif [[ "$is_custom" == false ]]; then
         console_prefix="${console_prefix}${mood_style_console}[$mood]"
         logfile_prefix="${logfile_prefix}[$mood]"
     fi
@@ -130,18 +141,16 @@ log_event() {
     fi
 
     # Add separator if there is a prefix section
-    local separator=""
-    [[ -n "$console_prefix" ]] && console_prefix="${console_prefix} - "
-    [[ -n "$logfile_prefix" ]] && logfile_prefix="${logfile_prefix} - "
+    [[ -n "$console_prefix" ]] && console_prefix="${console_prefix} — "
+    [[ -n "$logfile_prefix" ]] && logfile_prefix="${logfile_prefix} — "
 
-    # Constructing and displaying the console message with color
-    local console_message="${verbose_prefix_console}${debug_prefix_console}${console_prefix}${separator}${style_console}${narrative}${COLOR_PALETTE[RESET]}"
+    # Displaying the messages
+    local console_message="${verbose_prefix_console}${debug_prefix_console}${console_prefix}${style_console}${narrative}${COLOR_RESET}"
     echo -e "$console_message"
-
-    # Constructing and displaying the log message without color
-    local logfile_message="${verbose_prefix_logfile}${debug_prefix_logfile}${logfile_prefix}${separator}${narrative}"
+    local logfile_message="${verbose_prefix_logfile}${debug_prefix_logfile}${logfile_prefix}${narrative}"
     echo "$logfile_message" >>"$LOG_FILE"
 }
+
 
 # Standard Log Level Functions
 log_info() { log_event "INFO" "$1"; }
@@ -226,7 +235,24 @@ log_bold_nodate_status() { log_event "BOLD_NODATE_STATUS" "$1"; }
 log_bold_nodate_verbose() { log_event "BOLD_NODATE_VERBOSE" "$1"; }
 log_bold_nodate_question() { log_event "BOLD_NODATE_QUESTION" "$1"; }
 
-# Custom Mood Type Logging Functions
-log_custom_prefix_1() { log_event "BOLD_NODATE_CUSTOM_CUSTOM_PREFIX_1" "$1"; }
-log_custom_prefix_2() { log_event "BOLD_NODATE_CUSTOM_CUSTOM_PREFIX_2" "$1"; }
-log_custom_prefix_3() { log_event "BOLD_NODATE_CUSTOM_CUSTOM_PREFIX_3" "$1"; }
+# Custom Prefix Logging Functions
+log_custom_prefix_1() { log_event "CUSTOM_PREFIX_1" "$1"; }
+log_custom_prefix_2() { log_event "CUSTOM_PREFIX_2" "$1"; }
+log_custom_prefix_3() { log_event "CUSTOM_PREFIX_3" "$1"; }
+
+# Bold Variants
+log_bold_custom_prefix_1() { log_event "BOLD_CUSTOM_PREFIX_1" "$1"; }
+log_bold_custom_prefix_2() { log_event "BOLD_CUSTOM_PREFIX_2" "$1"; }
+log_bold_custom_prefix_3() { log_event "BOLD_CUSTOM_PREFIX_3" "$1"; }
+
+# No-Date Variants
+log_nodate_custom_prefix_1() { log_event "NODATE_CUSTOM_PREFIX_1" "$1"; }
+log_nodate_custom_prefix_2() { log_event "NODATE_CUSTOM_PREFIX_2" "$1"; }
+log_nodate_custom_prefix_3() { log_event "NODATE_CUSTOM_PREFIX_3" "$1"; }
+
+# Bold No-Date Variants
+log_bold_nodate_custom_prefix_1() { log_event "BOLD_NODATE_CUSTOM_PREFIX_1" "$1"; }
+log_bold_nodate_custom_prefix_2() { log_event "BOLD_NODATE_CUSTOM_PREFIX_2" "$1"; }
+log_bold_nodate_custom_prefix_3() { log_event "BOLD_NODATE_CUSTOM_PREFIX_3" "$1"; }
+
+# [Rest of your script...]

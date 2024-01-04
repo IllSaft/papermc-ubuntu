@@ -10,16 +10,19 @@ source "$DEBUGGER_DIR/logger.sh"
 
 # Function to log debug messages and toggle Bash debug mode
 toggle_debug_mode() {
-    local message=$1
+    # Enable debug logging if VERBOSE_MODE is true or LOG_LEVEL is DEBUG
+    if [ "$VERBOSE_MODE" == "true" ] || [ "$LOG_LEVEL" == "DEBUG" ]; then
+        log_bold_nodate_debug "Debug Mode Enabled."  # Log the debug message
+        
+        # Check if VERBOSE_MODE is also true
+        if [ "$VERBOSE_MODE" == "true" ]; then
+            log_bold_nodate_verbose "Verbose Mode Enabled"
+        fi
 
-    # Check if LOG_LEVEL is set to DEBUG
-    if [ "$LOG_LEVEL" == "DEBUG" ]; then
-        log_event "DEBUG" "$message"
-        set -x  # Enable Bash debug mode
+        set +x  # Enable Bash debug mode
     else
         set +x  # Disable Bash debug mode
     fi
 }
-
 
 # Additional debugging functions can be added here
