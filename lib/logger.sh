@@ -1,15 +1,25 @@
 #!/bin/bash
 # Logger.sh - Provides enhanced logging functionalities for Bash scripts
-
-# Initializes the logger by checking if the log file exists
+# Initializes the logger by archiving the old log file if no screen session is active, and creating a new one
 initiate_logger() {
+    local session_name="$SESSION" # Replace with your screen session name
+
     if [[ -z $LOGGER_INITIALIZED ]]; then
-        # Create the log file if it doesn't exist
-        if [ ! -f "$LOG_FILE" ]; then
+        # Check if no screen session is running
+        if ! screen -list | grep -q "$session_name"; then
+            # No active screen session, check if log file exists and gzip it
+            if [ -f "$LOG_FILE" ]; then
+                local timestamp=$(date +"%Y%m%d-%H%M%S")
+                gzip -c "$LOG_FILE" > "${LOG_FILE}-${timestamp}.gz"
+            fi
+
+            # Create/clear the new log file
             > "$LOG_FILE"
-            log_nodate_info "Logger Initialized and new log file created."
+            log_bold_nodate_success "Logger Initialized and new log file created."
+            log_bold_nodate_tip "Previous log file archived as ${LOG_FILE}-${timestamp}.gz"
         else
-            log_nodate_info "Logger Initialized, continuing with existing log file."
+            # Active screen session found, continue with existing log file
+            log_bold_nodate_success "Logger Initialized, continuing with existing log file."
         fi
         export LOGGER_INITIALIZED=true
     fi

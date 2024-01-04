@@ -1,0 +1,139 @@
+[ALERT] - Logger Initialized and new log file created.
+[TIP] - Previous log file archived as /home/howson/Documents/GitHub/papermc-ubuntu/logs/logfile.log-20240103-235424.gz
+[SUCCESS] - papermc-server service stopped, disabled, and removed successfully.
+[INFO] - Fetching latest build: 370...
+[NOTE] - paper-1.20.4-370.jar already exists. Skipping download.
+[NOTE] - Current build matches the requested build. No need to re-link.
+[SUCCESS] - EULA already accepted. Starting the server...
+[SUCCESS] - Minecraft server properties configured.
+[SUCCESS] - Started Minecraft server in a screen session named 'default-papermc-server'.
+[PROMPT] - Do you want to attach to the 'default-papermc-server' server screen session? [Y/n] (Default: No in 10 seconds)
+Starting org.bukkit.craftbukkit.Main
+System Info: Java 21 (OpenJDK 64-Bit Server VM 21.0.1+12-LTS) Host: Linux 6.6.8-testhowson (amd64)
+Loading libraries, please wait...
+2024-01-03 23:54:26,275 ServerMain WARN Advanced terminal features are not available in this environment
+[23:54:27 INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
+[23:54:28 INFO]: Loaded 1174 recipes
+[23:54:28 INFO]: Loaded 1271 advancements
+[23:54:28 INFO]: Starting minecraft server version 1.20.4
+[23:54:28 INFO]: Loading properties
+[23:54:28 INFO]: This server is running Paper version git-Paper-370 (MC: 1.20.4) (Implementing API version 1.20.4-R0.1-SNAPSHOT) (Git: 1fa48d1)
+[23:54:29 INFO]: Server Ping Player Sample Count: 12
+[23:54:29 INFO]: Using 4 threads for Netty based IO
+[23:54:29 WARN]: [!] The timings profiler has been enabled but has been scheduled for removal from Paper in the future.
+    We recommend installing the spark profiler as a replacement: https://spark.lucko.me/
+    For more information please visit: https://github.com/PaperMC/Paper/issues/8948
+[23:54:29 INFO]: [ChunkTaskScheduler] Chunk system is using 1 I/O threads, 8 worker threads, and gen parallelism of 8 threads
+[23:54:29 INFO]: Default game type: SURVIVAL
+[23:54:29 INFO]: Generating keypair
+[23:54:29 INFO]: Starting Minecraft server on *:25565
+[23:54:29 INFO]: Using epoll channel type
+[23:54:29 INFO]: Paper: Using libdeflate (Linux x86_64) compression from Velocity.
+[23:54:29 INFO]: Paper: Using OpenSSL 3.0.x (Linux x86_64) cipher from Velocity.
+[23:54:29 INFO]: Server permissions file permissions.yml is empty, ignoring it
+[23:54:29 INFO]: Preparing level "world"
+[23:54:29 INFO]: Preparing start region for dimension minecraft:overworld
+[23:54:29 INFO]: Time elapsed: 83 ms
+[23:54:29 INFO]: Preparing start region for dimension minecraft:the_nether
+[23:54:29 INFO]: Time elapsed: 372 ms
+[23:54:29 INFO]: Preparing start region for dimension minecraft:the_end
+[23:54:29 INFO]: Time elapsed: 12 ms
+[23:54:29 INFO]: Running delayed init tasks
+[23:54:29 INFO]: Done (1.311s)! For help, type "help"
+[23:54:29 INFO]: Timings Reset
+[HIGHLIGHT] - Detached from screen session. Server is running in the background. Use 'screen -r default-papermc-server' to re-attach.
+[SUCCESS] - Main script execution completed
+[STATUS] - Logger Initialized, continuing with existing log file.
+[SUCCESS] - papermc-server service stopped, disabled, and removed successfully.
+[FOCUS] - Server is up-to-date with the latest build #370.
+[ALERT] - A screen session named 'default-papermc-server' is already running.
+[PROMPT] - Do you want to attach to this session? [y/N]
+[HIGHLIGHT] - Detached from screen session. Server is running in the background. Use 'screen -r default-papermc-server' to re-attach.
+[STATUS] - Logger Initialized, continuing with existing log file.
+[SUCCESS] - papermc-server service stopped, disabled, and removed successfully.
+[FOCUS] - Server is up-to-date with the latest build #370.
+[ALERT] - A screen session named 'default-papermc-server' is already running.
+[PROMPT] - Do you want to attach to this session? [y/N]
+[HIGHLIGHT] - Skipping screen attachment. Use 'screen -r default-papermc-server' to re-attach later.
+[ALERT] - Logger Initialized, continuing with existing log file.
+[SUCCESS] - papermc-server service stopped, disabled, and removed successfully.
+[FOCUS] - Server is up-to-date with the latest build #370.
+[ALERT] - A screen session named 'default-papermc-server' is already running.
+[PROMPT] - Do you want to attach to this session? [y/N]
+[HIGHLIGHT] - Skipping screen attachment. Use 'screen -r default-papermc-server' to re-attach later.
+[SUCCESS] - Logger Initialized, continuing with existing log file.
+[SUCCESS] - papermc-server service stopped, disabled, and removed successfully.
+[FOCUS] - Server is up-to-date with the latest build #370.
+[ALERT] - A screen session named 'default-papermc-server' is already running.
+[PROMPT] - Do you want to attach to this session? [y/N]
+[HIGHLIGHT] - Skipping screen attachment. Use 'screen -r default-papermc-server' to re-attach later.
+[SUCCESS] - Logger Initialized, continuing with existing log file.
+[SUCCESS] - papermc-server.service stopped, disabled, and removed successfully.
+[FOCUS] - Server is up-to-date with the latest build #370.
+[ALERT] - A screen session named 'default-papermc-server' is already running.
+[PROMPT] - Do you want to attach to this session? [y/N]
+[HIGHLIGHT] - Skipping screen attachment. Use 'screen -r default-papermc-server' to re-attach later.
+[SUCCESS] - Logger Initialized, continuing with existing log file.
+[WARNING] - papermc-server service file does not exist. Skipping stop, disable, and remove process.
+[FOCUS] - Server is up-to-date with the latest build #370.
+[ALERT] - A screen session named 'default-papermc-server' is already running.
+[PROMPT] - Do you want to attach to this session? [y/N]
+[HIGHLIGHT] - Skipping screen attachment. Use 'screen -r default-papermc-server' to re-attach later.
+[SUCCESS] - Logger Initialized, continuing with existing log file.
+[WARNING] - papermc-server.service file does not exist. Skipping.
+[FOCUS] - Server is up-to-date with the latest build #370.
+[ALERT] - A screen session named 'default-papermc-server' is already running.
+[PROMPT] - Do you want to attach to this session? [y/N]
+[HIGHLIGHT] - Skipping screen attachment. Use 'screen -r default-papermc-server' to re-attach later.
+[SUCCESS] - Logger Initialized, continuing with existing log file.
+[WARNING] - papermc-server.service file does not exist. Skipping.
+[FOCUS] - Server is up-to-date with the latest build #370.
+[ALERT] - A screen session named 'default-papermc-server' is already running.
+[PROMPT] - Do you want to attach to this session? [y/N]
+[HIGHLIGHT] - Skipping screen attachment. Use 'screen -r default-papermc-server' to re-attach later.
+[SUCCESS] - Logger Initialized, continuing with existing log file.
+[WARNING] - papermc-server.service file does not exist. Skipping.
+[FOCUS] - Server is up-to-date with the latest build #370.
+[ALERT] - A screen session named 'default-papermc-server' is already running.
+[PROMPT] - Do you want to attach to this session? [y/N]
+[HIGHLIGHT] - Detached from screen session. Server is running in the background. Use 'screen -r default-papermc-server' to re-attach.
+[SUCCESS] - Logger Initialized, continuing with existing log file.
+[WARNING] - papermc-server.service file does not exist. Skipping.
+[FOCUS] - Server is up-to-date with the latest build #370.
+[ALERT] - A screen session named 'default-papermc-server' is already running.
+[PROMPT] - Do you want to attach to this session? [y/N]
+[HIGHLIGHT] - Skipping screen attachment. Use 'screen -r default-papermc-server' to re-attach later.
+[SUCCESS] - Logger Initialized, continuing with existing log file.
+[WARNING] - papermc-server.service file does not exist. Skipping.
+[FOCUS] - Server is up-to-date with the latest build #370.
+[ALERT] - A screen session named 'default-papermc-server' is already running.
+[PROMPT] - Do you want to attach to this session? [y/N]
+[HIGHLIGHT] - Skipping screen attachment. Use 'screen -r default-papermc-server' to re-attach later.
+[SUCCESS] - Logger Initialized, continuing with existing log file.
+[WARNING] - papermc-server.service file does not exist. Skipping.
+[FOCUS] - Server is up-to-date with the latest build #370.
+[ALERT] - A screen session named 'default-papermc-server' is already running.
+[PROMPT] - Do you want to attach to this session? [y/N]
+[HIGHLIGHT] - Skipping screen attachment. Use 'screen -r default-papermc-server' to re-attach later.
+[SUCCESS] - Logger Initialized, continuing with existing log file.
+[WARNING] - papermc-server.service file does not exist. Skipping.
+[FOCUS] - Server is up-to-date with the latest build #370.
+[ALERT] - A screen session named 'default-papermc-server' is already running.
+[PROMPT] - Do you want to attach to this session? [y/N]
+[HIGHLIGHT] - Skipping screen attachment. Use 'screen -r default-papermc-server' to re-attach later.
+[SUCCESS] - Logger Initialized, continuing with existing log file.
+[WARNING] - papermc-server.service file does not exist. Skipping.
+[FOCUS] - Server is up-to-date with the latest build #370.
+[ALERT] - A screen session named 'default-papermc-server' is already running.
+[PROMPT] - Do you want to attach to this session? [y/N]
+[SUCCESS] - Logger Initialized, continuing with existing log file.
+[WARNING] - papermc-server.service file does not exist. Skipping.
+[FOCUS] - Server is up-to-date with the latest build #370.
+[ALERT] - A screen session named 'default-papermc-server' is already running.
+[PROMPT] - Do you want to attach to this session? [y/N]
+[SUCCESS] - Logger Initialized, continuing with existing log file.
+[WARNING] - papermc-server.service file does not exist. Skipping.
+[FOCUS] - Server is up-to-date with the latest build #370.
+[ALERT] - A screen session named 'default-papermc-server' is already running.
+[PROMPT] - Do you want to attach to this session? [y/N]
+[HIGHLIGHT] - Skipping screen attachment. Use 'screen -r default-papermc-server' to re-attach later.

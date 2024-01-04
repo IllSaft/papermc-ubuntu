@@ -9,7 +9,32 @@ else
     echo "Error: settings.cfg not found. Please check the path."
     exit 1
 fi
+# Color Customization for Log Levels
+# Primary Colors for basic log levels
+COLOR_INFO=$(tput setaf 119)                        # Very Light Green for informational messages
+COLOR_WARNING=$(tput setaf 208)                     # Dark Orange for warnings
+COLOR_ERROR=$(tput setaf 124)                       # Deep Dark Red for errors
 
+# Extended Colors for additional log levels        
+COLOR_INFO_HEADER=$(tput setaf 141)                 # Lavender for INFO_HEADER
+COLOR_IMPORTANT=$(tput setaf 80)                    # Turquoise for IMPORTANT
+COLOR_NOTE=$(tput setaf 250)                        # Light Grey for NOTE
+COLOR_TIP=$(tput setaf 245)                         # Light-Dark Grey for TIP
+COLOR_DEBUG=$(tput setaf 200)                       # Hot Pink for DEBUG
+COLOR_VERBOSE=$(tput setaf 245)                     # Light-Dark Grey for VERBOSE
+COLOR_SUCCESS=$(tput setaf 82)                      # Very Bright Green for success messages
+COLOR_CONFIRMATION=$(tput setaf 190)                # Bright Lime for CONFIRMATION
+COLOR_ALERT=$(tput setaf 214)                       # Tangerine for ALERT
+COLOR_CAUTION=$(tput setaf 220)                     # Yellow/Amber for CAUTION
+COLOR_FOCUS=$(tput setaf 33)                        # Dark Blue for FOCUS
+COLOR_HIGHLIGHT=$(tput setaf 201)                   # Magenta for HIGHLIGHT
+COLOR_NEUTRAL=$(tput setaf 244)                     # Neutral Grey for NEUTRAL
+COLOR_PROMPT=$(tput setaf 51)                       # Cyan for PROMPT
+COLOR_STATUS=$(tput setaf 163)                      # Light Magenta for STATUS
+COLOR_QUESTION=$(tput setaf 172)                    # Bright-ish Orange/Amber for questions
+
+# Reset to default color
+COLOR_RESET=$(tput sgr0)
 # Color Palette Definition using `tput`
 declare -A COLOR_PALETTE=(
     [BLACK]=$(tput setaf 0)
